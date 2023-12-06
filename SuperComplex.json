@@ -1,0 +1,40 @@
+
+{
+{"operator": "plus",
+"children": [  
+{
+  {"operator": "plus",
+  "children": [    
+{
+    {"operator": "minus",
+    "children": [      
+{
+      {"operator": "plus",
+      "children": [32, 44]
+      }
+,       
+{
+      {"operator": "mod",
+      "children": [3, 6]
+      }
+]
+    }
+,     
+{
+    {"operator": "divide",
+    "children": [      
+{
+      {"operator": "times",
+      "children": [44, 32]
+      }
+, 33]
+    }
+]
+  }
+,   
+{
+  {"operator": "power",
+  "children": [2, 4]
+  }
+]
+}

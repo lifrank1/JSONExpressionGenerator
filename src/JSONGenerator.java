@@ -167,30 +167,22 @@ public final class JSONGenerator {
         //needs to address adding { for recursive objects
         switch (root.charAt(0)) {
             case '+':
-                printSpaces(level, out);
-                out.println("{");
-                printSpaces(level, out);
-                out.println("\"operator\": \"plus\",");
+                printNotLeaf(level, out, "plus");
                 break;
             case '-':
-                printSpaces(level, out);
-                out.println("{\"operator\": \"minus\",");
+                printNotLeaf(level, out, "minus");
                 break;
             case '*':
-                printSpaces(level, out);
-                out.println("{\"operator\": \"times\",");
+                printNotLeaf(level, out, "times");
                 break;
             case '/':
-                printSpaces(level, out);
-                out.println("{\"operator\": \"divide\",");
+                printNotLeaf(level, out, "divide");
                 break;
             case '%':
-                printSpaces(level, out);
-                out.println("{\"operator\": \"mod\",");
+                printNotLeaf(level, out, "mod");
                 break;
             case '^':
-                printSpaces(level, out);
-                out.println("{\"operator\": \"power\",");
+                printNotLeaf(level, out, "power");
                 break;
             default:
                 leaf = true;
@@ -200,17 +192,24 @@ public final class JSONGenerator {
 
         if (!leaf) {
             printSpaces(level, out);
-            out.println("\"children\": [");
+            out.print("\"children\": [");
             outputTree(left, out, level + 1);
-            printSpaces(level, out);
-            out.println(", ");
+            out.print(", ");
             outputTree(right, out, level + 1);
-            printSpaces(level, out);
             out.println("]");
             printSpaces(level, out);
             out.println("}");
         }
         expTree.assemble(root, left, right);
+    }
+
+    public static void printNotLeaf(int level, PrintWriter out,
+            String operator) {
+        printSpaces(level, out);
+        out.println("\n{");
+        printSpaces(level, out);
+        out.println("\"operator\": \"" + operator + "\",");
+
     }
 
     /**
@@ -248,7 +247,7 @@ public final class JSONGenerator {
         BinaryTree<String> expTree = expressionTree();
 //        out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 //        out.println("{");
-        outputTree(expTree, out, 1);
+        outputTree(expTree, out, 0);
 //        out.println("}");
 
         out.close();
