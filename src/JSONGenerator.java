@@ -168,7 +168,9 @@ public final class JSONGenerator {
         switch (root.charAt(0)) {
             case '+':
                 printSpaces(level, out);
-                out.println("{\"operator\": \"plus\",");
+                out.println("{");
+                printSpaces(level, out);
+                out.println("\"operator\": \"plus\",");
                 break;
             case '-':
                 printSpaces(level, out);
@@ -204,7 +206,9 @@ public final class JSONGenerator {
             out.println(", ");
             outputTree(right, out, level + 1);
             printSpaces(level, out);
-            out.println("]}");
+            out.println("]");
+            printSpaces(level, out);
+            out.println("}");
         }
         expTree.assemble(root, left, right);
     }
@@ -243,9 +247,9 @@ public final class JSONGenerator {
         JSONGenerator.tokenizer = new JSONExpressionTokenizer(exp);
         BinaryTree<String> expTree = expressionTree();
 //        out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        out.println("{");
+//        out.println("{");
         outputTree(expTree, out, 1);
-        out.println("}");
+//        out.println("}");
 
         out.close();
     }
