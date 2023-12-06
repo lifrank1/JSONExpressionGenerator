@@ -1,0 +1,10 @@
+{
+  {"operator": "plus",
+  "children": [
+    {"operator": "plus",
+    "children": [
+4    , 
+3    ]}
+  , 
+2  ]}
+}
