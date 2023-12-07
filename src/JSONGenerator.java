@@ -9,7 +9,7 @@ import components.binarytree.BinaryTree;
 import components.binarytree.BinaryTree1;
 
 /**
- * A class that can compute the value of an arithmetic expression.
+ * A class to generate a JSON file given a mathematical expression.
  */
 /**
  * @author paolo
@@ -152,6 +152,8 @@ public final class JSONGenerator {
     }
 
     /**
+     * Outputs the JSON to a file while reading the expression tree
+     *
      * @param expTree
      * @param out
      * @param level
@@ -164,7 +166,7 @@ public final class JSONGenerator {
         boolean leaf = false;
 
         System.out.println(root);
-        //needs to address adding { for recursive objects
+
         switch (root.charAt(0)) {
             case '+':
                 printNotLeaf(level, out, "plus");
@@ -203,6 +205,13 @@ public final class JSONGenerator {
         expTree.assemble(root, left, right);
     }
 
+    /**
+     * Helper method to print an opening expression given a the operator
+     *
+     * @param level
+     * @param out
+     * @param operator
+     */
     public static void printNotLeaf(int level, PrintWriter out,
             String operator) {
         printSpaces(level, out);
@@ -245,10 +254,7 @@ public final class JSONGenerator {
 
         JSONGenerator.tokenizer = new JSONExpressionTokenizer(exp);
         BinaryTree<String> expTree = expressionTree();
-//        out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-//        out.println("{");
         outputTree(expTree, out, 0);
-//        out.println("}");
 
         out.close();
     }

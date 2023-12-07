@@ -1,0 +1,20 @@
+
+{
+"operator": "minus",
+"children": [  
+{
+  "operator": "plus",
+  "children": [    
+{
+    "operator": "times",
+    "children": [3, 4]
+    }
+,     
+{
+    "operator": "power",
+    "children": [2, 5]
+    }
+]
+  }
+, 19]
+}
